@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prestige Properties — Find Your Dream Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #F7F3EE;
+    --cream-deep: #EDE6DB;
+    --navy: #0F1C2E;
+    --navy-mid: #1A2D44;
+    --gold: #B8924A;
+    --gold-light: #D4AF70;
+    --gold-pale: #F5ECD9;
+    --text-dark: #0F1C2E;
+    --text-mid: #3D4E61;
+    --text-light: #7A8A9A;
+    --white: #FFFFFF;
+    --radius: 4px;
+    --radius-lg: 10px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ---- TOPBAR ---- */
+  .topbar {
+    background: var(--navy);
+    color: rgba(255,255,255,0.65);
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    padding: 9px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  .topbar a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .topbar a:hover { color: var(--gold-light); }
+  .topbar-right { display: flex; gap: 28px; }
+  .topbar-item { display: flex; align-items: center; gap: 6px; }
+
+  /* ---- NAV ---- */
+  nav {
+    background: var(--white);
+    padding: 0 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(184,146,74,0.18);
+    box-shadow: 0 2px 24px rgba(15,28,46,0.06);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text-mid);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--navy);
+    color: var(--gold-light) !important;
+    padding: 10px 22px;
+    border-radius: var(--radius);
+    letter-spacing: 0.08em !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
+
+  /* ---- HERO ---- */
+  .hero {
+    min-height: 90vh;
+    background: var(--navy);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(120deg, rgba(15,28,46,0.95) 40%, rgba(15,28,46,0.5) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 780px;
+    padding: 80px 48px 80px 80px;
+    animation: fadeUp 0.9s ease both;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(184,146,74,0.15);
+    border: 1px solid rgba(184,146,74,0.35);
+    color: var(--gold-light);
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold-light);
+    display: inline-block;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 6vw, 76px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.12;
+    margin-bottom: 22px;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 44px;
+  }
+
+  /* Search box */
+  .search-box {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    max-width: 640px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  }
+  .search-field { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .search-field label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+  .search-field select, .search-field input {
+    border: 1px solid var(--cream-deep);
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    color: var(--text-dark);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .search-field select:focus, .search-field input:focus { border-color: var(--gold); }
+  .search-btn {
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    padding: 12px 28px;
+    border-radius: var(--radius);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.15s;
+    flex-shrink: 0;
+  }
+  .search-btn:hover { background: var(--navy); transform: translateY(-1px); }
+
+  /* Stats strip */
+  .stats-strip {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    background: rgba(15,28,46,0.85);
+    backdrop-filter: blur(10px);
+  }
+  .stat {
+    flex: 1;
+    max-width: 220px;
+    padding: 22px 32px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 11.5px; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ---- SECTIONS ---- */
+  section { padding: 96px 48px; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-sub {
+    font-size: 15.5px;
+    color: var(--text-mid);
+    line-height: 1.75;
+    max-width: 520px;
+  }
+  .section-head { margin-bottom: 56px; }
+
+  /* ---- LISTINGS ---- */
+  .listings-section { background: var(--white); }
+  .listings-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px; }
+  .filter-tabs { display: flex; gap: 6px; }
+  .tab {
+    padding: 8px 20px;
+    border: 1px solid var(--cream-deep);
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-mid);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Outfit', sans-serif;
+  }
+  .tab:hover, .tab.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+  }
+
+  .listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+  }
+  .property-card {
+    background: var(--cream);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(184,146,74,0.12);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(15,28,46,0.12);
+  }
+  .card-img {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+  .card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .property-card:hover .card-img img { transform: scale(1.06); }
+  .card-badge {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+  .card-fav {
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 34px; height: 34px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+    border: none;
+  }
+  .card-fav:hover { background: var(--white); }
+  .card-body { padding: 22px 22px 20px; }
+  .card-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+  }
+  .card-location {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .card-divider { border: none; border-top: 1px solid var(--cream-deep); margin-bottom: 16px; }
+  .card-specs { display: flex; gap: 20px; }
+  .spec { font-size: 13px; color: var(--text-mid); display: flex; align-items: center; gap: 5px; }
+  .spec-icon { font-size: 15px; }
+
+  /* ---- HOW IT WORKS ---- */
+  .how-section { background: var(--cream); }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-top: 56px; }
+  .step { position: relative; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: rgba(184,146,74,0.15);
+    line-height: 1;
+    margin-bottom: -20px;
+  }
+  .step-icon {
+    width: 52px; height: 52px;
+    background: var(--gold-pale);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(184,146,74,0.25);
+  }
+  .step h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .step p { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+  .step-connector {
+    display: none;
+  }
+
+  /* ---- ABOUT ---- */
+  .about-section { background: var(--navy); overflow: hidden; }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .about-img-wrap {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4/5;
+  }
+  .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .about-img-accent {
+    position: absolute;
+    bottom: -2px; right: -2px;
+    width: 55%;
+    background: var(--gold);
+    border-radius: var(--radius-lg) 0 var(--radius-lg) 0;
+    padding: 28px 24px;
+    color: var(--white);
+  }
+  .about-img-accent .accent-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .about-img-accent .accent-label { font-size: 12px; opacity: 0.85; letter-spacing: 0.05em; }
+  .about-content .section-label { color: var(--gold-light); }
+  .about-content .section-title { color: var(--white); }
+  .about-content .section-sub { color: rgba(255,255,255,0.6); }
+  .about-features { display: flex; flex-direction: column; gap: 20px; margin: 36px 0 44px; }
+  .feature-row {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg);
+  }
+  .feature-icon {
+    width: 44px; height: 44px;
+    background: rgba(184,146,74,0.15);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .feature-row h4 { font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+  .feature-row p { font-size: 13.5px; color: rgba(255,255,255,0.5); line-height: 1.65; }
+  .about-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--white);
+    padding: 14px 30px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .about-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* ---- TESTIMONIALS ---- */
+  .testimonials-section { background: var(--cream-deep); }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+  .testi-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 30px 28px;
+    border: 1px solid rgba(184,146,74,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; }
+  .testi-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.65;
+    font-style: italic;
+  }
+  .testi-author { display: flex; align-items: center; gap: 14px; }
+  .author-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--gold-pale);
+  }
+  .author-name { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .author-role { font-size: 12.5px; color: var(--text-light); }
+
+  /* ---- CTA BANNER ---- */
+  .cta-section {
+    background: var(--navy);
+    text-align: center;
+    padding: 80px 48px;
+  }
+  .cta-section .section-label { color: var(--gold-light); }
+  .cta-section .section-title { color: var(--white); max-width: 600px; margin: 0 auto 20px; }
+  .cta-section p { color: rgba(255,255,255,0.6); font-size: 15.5px; max-width: 500px; margin: 0 auto 44px; }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--white);
+    padding: 15px 34px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    border: none;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    padding: 15px 34px;
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+  }
+  .btn-outline:hover { border-color: var(--gold-light); background: rgba(255,255,255,0.06); }
+
+  /* ---- CONTACT ---- */
+  .contact-section { background: var(--cream); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: start; max-width: 1100px; margin: 0 auto; }
+  .contact-info { display: flex; flex-direction: column; gap: 32px; }
+  .contact-item { display: flex; gap: 16px; }
+  .contact-icon {
+    width: 48px; height: 48px;
+    background: var(--gold-pale);
+    border: 1px solid rgba(184,146,74,0.25);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .contact-item h4 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .contact-item p { font-size: 13.5px; color: var(--text-mid); line-height: 1.65; }
+  .contact-form { background: var(--white); border-radius: var(--radius-lg); padding: 40px 36px; border: 1px solid rgba(184,146,74,0.12); box-shadow: 0 10px 40px rgba(15,28,46,0.06); }
+  .form-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--navy); margin-bottom: 6px; }
+  .form-sub { font-size: 14px; color: var(--text-light); margin-bottom: 28px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+  .form-group label { font-size: 11.5px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--text-light); }
+  .form-group input, .form-group select, .form-group textarea {
+    border: 1px solid var(--cream-deep);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    color: var(--text-dark);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    resize: vertical;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); background: var(--white); }
+  .form-submit {
+    width: 100%;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    padding: 15px;
+    border-radius: var(--radius);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--gold); transform: translateY(-2px); }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: #060F1A;
+    color: rgba(255,255,255,0.5);
+    padding: 64px 48px 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+  .footer-brand .logo { display: block; margin-bottom: 16px; }
+  .footer-brand p { font-size: 13.5px; line-height: 1.75; max-width: 280px; }
+  .footer-col h5 {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-col a { font-size: 13.5px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--gold-light); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12.5px;
+  }
+  .social-links { display: flex; gap: 12px; }
+  .social-link {
+    width: 34px; height: 34px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-link:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  /* ---- ANIMATIONS ---- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 900px) {
+    .topbar { padding: 9px 24px; font-size: 11.5px; }
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    section { padding: 64px 24px; }
+    .hero-content { padding: 64px 24px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .stats-strip { display: none; }
+  }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 40px; }
+    .search-box { flex-direction: column; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .topbar-right { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span class="topbar-item">📍 194 Sector-17, Chandigarh, Punjab</span>
+  <div class="topbar-right">
+    <span class="topbar-item">📞 <a href="tel:+919876543210">+91 98765 43210</a></span>
+    <span class="topbar-item">✉️ <a href="mailto:hello@prestigeproperties.in">hello@prestigeproperties.in</a></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">Prestige<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#listings">Buy</a></li>
+    <li><a href="#listings">Rent</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Free Consult</a></li>
+  </ul>
+  <a href="#contact" class="btn-primary" style="display:none;" id="mobile-cta">Talk to Us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">1,200+ Homes Sold Across Punjab</div>
+    <h1>Find Your <em>Perfect</em> Home with Confidence</h1>
+    <p>Whether you're buying your first home or upgrading to something extraordinary — we make every step simple, transparent, and stress-free.</p>
+    <div class="search-box">
+      <div class="search-field">
+        <label>Location</label>
+        <select>
+          <option>Any City</option>
+          <option>Chandigarh</option>
+          <option>Mohali</option>
+          <option>Ludhiana</option>
+          <option>Amritsar</option>
+          <option>Patiala</option>
+          <option>Jalandhar</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label>Property Type</label>
+        <select>
+          <option>Any Type</option>
+          <option>Apartment</option>
+          <option>Villa</option>
+          <option>Plot</option>
+          <option>Builder Floor</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label>Budget</label>
+        <select>
+          <option>Any Budget</option>
+          <option>Under ₹30L</option>
+          <option>₹30L – ₹60L</option>
+          <option>₹60L – ₹1Cr</option>
+          <option>₹1Cr – ₹2Cr</option>
+          <option>Above ₹2Cr</option>
+        </select>
+      </div>
+      <button class="search-btn" onclick="document.getElementById('listings').scrollIntoView({behavior:'smooth'})">Search</button>
+    </div>
+  </div>
+  <div class="stats-strip">
+    <div class="stat"><div class="stat-num">1,200+</div><div class="stat-label">Homes Sold</div></div>
+    <div class="stat"><div class="stat-num">15</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num">4.97</div><div class="stat-label">Google Rating</div></div>
+    <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Client Satisfaction</div></div>
+  </div>
+</section>
+
+<!-- FEATURED LISTINGS -->
+<section class="listings-section" id="listings">
+  <div class="listings-header fade-in">
+    <div>
+      <div class="section-label">Featured Properties</div>
+      <div class="section-title">Handpicked <em>Listings</em></div>
+    </div>
+    <div class="filter-tabs">
+      <button class="tab active" onclick="filterTab(this,'all')">All</button>
+      <button class="tab" onclick="filterTab(this,'buy')">Buy</button>
+      <button class="tab" onclick="filterTab(this,'rent')">Rent</button>
+      <button class="tab" onclick="filterTab(this,'villa')">Villa</button>
+    </div>
+  </div>
+  <div class="listings-grid" id="listings-grid">
+    <!-- Cards injected by JS -->
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-head fade-in" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+    <div class="section-label">Our Process</div>
+    <div class="section-title">Simple Steps to <em>Your New Home</em></div>
+    <div class="section-sub">We've streamlined home-buying so you spend less time on paperwork and more time falling in love with your new space.</div>
+  </div>
+  <div class="steps">
+    <div class="step fade-in">
+      <div class="step-num">01</div>
+      <div class="step-icon">🎯</div>
+      <h3>Share Your Vision</h3>
+      <p>Tell us what you're looking for — budget, location, must-haves. We listen and create a tailored shortlist just for you.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">02</div>
+      <div class="step-icon">🏡</div>
+      <h3>Explore Properties</h3>
+      <p>We arrange guided visits to handpicked homes and provide in-depth market analysis so you always know the true value.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">03</div>
+      <div class="step-icon">🤝</div>
+      <h3>We Negotiate for You</h3>
+      <p>Our expert negotiators work tirelessly to get you the best price and terms, protecting your interests every step of the way.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">04</div>
+      <div class="step-icon">🗝️</div>
+      <h3>Move In with Joy</h3>
+      <p>We handle all the paperwork, legal checks, and registration so you can focus on the excitement of your new home.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap fade-in">
+      <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80" alt="Our team">
+      <div class="about-img-accent">
+        <div class="accent-num">15+</div>
+        <div class="accent-label">Years serving Punjab</div>
+      </div>
+    </div>
+    <div class="about-content fade-in">
+      <div class="section-label">Why Choose Us</div>
+      <div class="section-title">We'll Find Your <em>Perfect</em> Home</div>
+      <div class="section-sub">With us in your corner, you barely need to lift a finger. We take the pain out of the property search so you settle into your ideal home in no time.</div>
+      <div class="about-features">
+        <div class="feature-row">
+          <div class="feature-icon">🗺️</div>
+          <div>
+            <h4>Deep Local Market Knowledge</h4>
+            <p>15 years of insights into Punjab's real estate landscape — we know every neighbourhood's true value.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-icon">🌐</div>
+          <div>
+            <h4>Largest Vendor Network</h4>
+            <p>From mortgage brokers to inspectors and legal experts — our trusted network ensures a stress-free journey.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-icon">💼</div>
+          <div>
+            <h4>We Work for YOU</h4>
+            <p>Our top priority is your needs. We negotiate the best deal possible with complete transparency.</p>
+          </div>
+        </div>
+      </div>
+      <a href="#contact" class="about-cta">Start Your Search →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="section-head fade-in" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+    <div class="section-label">Client Stories</div>
+    <div class="section-title">What Our <em>Clients</em> Say</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card fade-in">
+      <div class="stars">★★★★★</div>
+      <div class="testi-text">"Prestige Properties made our home buying journey completely stress-free. They found us a villa that ticked every box — and negotiated 8% below asking price!"</div>
+      <div class="testi-author">
+        <img class="author-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+        <div><div class="author-name">Simran Kaur</div><div class="author-role">Bought a Villa in Mohali</div></div>
+      </div>
+    </div>
+    <div class="testi-card fade-in">
+      <div class="stars">★★★★★</div>
+      <div class="testi-text">"As first-time buyers, we were nervous about every step. The team was incredibly patient, explained everything clearly, and delivered beyond our expectations."</div>
+      <div class="testi-author">
+        <img class="author-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+        <div><div class="author-name">Rajveer & Priya Singh</div><div class="author-role">Bought a 3BHK in Chandigarh</div></div>
+      </div>
+    </div>
+    <div class="testi-card fade-in">
+      <div class="stars">★★★★★</div>
+      <div class="testi-text">"Their network is phenomenal. Within three weeks they had us viewing exactly the kind of properties we wanted. Closed in 45 days flat. Absolutely brilliant service!"</div>
+      <div class="testi-author">
+        <img class="author-avatar" src="https://randomuser.me/api/portraits/men/67.jpg" alt="">
+        <div><div class="author-name">Harpreet Bhatia</div><div class="author-role">Bought a Plot in Ludhiana</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section">
+  <div class="section-label">Ready to Begin?</div>
+  <div class="section-title">Start Your Home-Buying Journey <em>Today</em></div>
+  <p>Book a free consultation — we'll map out a personalised plan and answer every question you have. No pressure, just expert guidance.</p>
+  <div class="cta-buttons">
+    <a href="#contact" class="btn-primary">Book Free Consultation</a>
+    <a href="tel:+919876543210" class="btn-outline">📞 Call Us Now</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="section-label">Get in Touch</div>
+      <div class="section-title">Let's Find Your <em>Dream Home</em></div>
+      <div class="section-sub" style="margin-bottom:44px;">Fill out the form and one of our expert brokers will be in touch the same business day.</div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div><h4>Office Address</h4><p>194 Sector-17, Chandigarh, Punjab — 160017</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div><h4>Phone</h4><p>+91 98765 43210<br>Mon–Sat, 9am – 7pm</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div><h4>Email</h4><p>hello@prestigeproperties.in</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-title">Schedule a Consultation</div>
+      <div class="form-sub">We'll be in touch within 24 hours.</div>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="Rajveer"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Singh"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+      <div class="form-group"><label>Phone</label><input type="tel" placeholder="+91 98765 43210"></div>
+      <div class="form-group">
+        <label>I'm Looking To</label>
+        <select>
+          <option>Buy a Home</option>
+          <option>Rent a Property</option>
+          <option>Sell my Property</option>
+          <option>Get Market Advice</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea rows="3" placeholder="Tell us about your ideal property — size, location, budget..."></textarea></div>
+      <button class="form-submit" onclick="handleSubmit(event)">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="#" style="color:var(--white);">Prestige<span>.</span></a>
+      <p>Punjab's most trusted property brokerage. We've helped over 1,200 families find their dream homes since 2009.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Buy</h5>
+      <ul>
+        <li><a href="#">Apartments</a></li>
+        <li><a href="#">Villas</a></li>
+        <li><a href="#">Plots</a></li>
+        <li><a href="#">Builder Floors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Client Stories</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">RERA Registration</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Prestige Properties. All rights reserved.</span>
+    <div class="social-links">
+      <a class="social-link" href="#" title="Facebook">f</a>
+      <a class="social-link" href="#" title="Instagram">ig</a>
+      <a class="social-link" href="#" title="LinkedIn">in</a>
+      <a class="social-link" href="#" title="WhatsApp">wa</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const properties = [
+  {id:1,type:'buy',kind:'villa', price:'₹1.45 Cr', title:'Sunrise Villa with Pool', loc:'Sector 68, Mohali', beds:4, baths:3, sqft:'3200', badge:'Featured', img:'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80'},
+  {id:2,type:'buy',kind:'apartment', price:'₹62 L', title:'Modern 3BHK Apartment', loc:'Sector 20-C, Chandigarh', beds:3, baths:2, sqft:'1450', badge:'New', img:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80'},
+  {id:3,type:'rent',kind:'apartment', price:'₹28,000/mo', title:'Furnished Studio Flat', loc:'Patiala Road, Ludhiana', beds:1, baths:1, sqft:'680', badge:'For Rent', img:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80'},
+  {id:4,type:'buy',kind:'plot', price:'₹85 L', title:'Prime Corner Plot', loc:'Aerocity, Amritsar', beds:0, baths:0, sqft:'2400', badge:'Hot', img:'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80'},
+  {id:5,type:'rent',kind:'villa', price:'₹75,000/mo', title:'Luxury 5BHK Farmhouse', loc:'Zirakpur, Panchkula', beds:5, baths:4, sqft:'5800', badge:'For Rent', img:'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80'},
+  {id:6,type:'buy',kind:'apartment', price:'₹1.1 Cr', title:'Premium 4BHK Penthouse', loc:'VIP Road, Zirakpur', beds:4, baths:3, sqft:'2800', badge:'Exclusive', img:'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80'},
+];
+
+let currentFilter = 'all';
+let favorites = new Set();
+
+function renderCards(filter) {
+  const grid = document.getElementById('listings-grid');
+  const filtered = filter === 'all' ? properties : properties.filter(p => p.type === filter || p.kind === filter);
+  grid.innerHTML = filtered.map(p => `
+    <div class="property-card" onclick="">
+      <div class="card-img">
+        <img src="${p.img}" alt="${p.title}" loading="lazy">
+        <span class="card-badge">${p.badge}</span>
+        <button class="card-fav" onclick="toggleFav(event,${p.id})" id="fav-${p.id}">${favorites.has(p.id)?'❤️':'🤍'}</button>
+      </div>
+      <div class="card-body">
+        <div class="card-price">${p.price}</div>
+        <div class="card-title">${p.title}</div>
+        <div class="card-location">📍 ${p.loc}</div>
+        <hr class="card-divider">
+        <div class="card-specs">
+          ${p.beds > 0 ? `<span class="spec"><span class="spec-icon">🛏</span> ${p.beds} Beds</span>` : ''}
+          ${p.baths > 0 ? `<span class="spec"><span class="spec-icon">🚿</span> ${p.baths} Baths</span>` : ''}
+          <span class="spec"><span class="spec-icon">📐</span> ${p.sqft} sq.ft</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterTab(btn, filter) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = filter;
+  renderCards(filter);
+}
+
+function toggleFav(e, id) {
+  e.stopPropagation();
+  if (favorites.has(id)) favorites.delete(id);
+  else favorites.add(id);
+  document.getElementById('fav-'+id).textContent = favorites.has(id) ? '❤️' : '🤍';
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target;
+  btn.textContent = '✅ Message Sent!';
+  btn.style.background = '#2a6e3f';
+  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 3000);
+}
+
+// Intersection Observer for fade-in
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+renderCards('all');
+
+// Re-observe newly rendered cards
+setTimeout(() => {
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+}, 100);
+</script>
+</body>
+</html>
